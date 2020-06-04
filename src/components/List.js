@@ -25,9 +25,9 @@ const List = ({ itemsList, title, setCurrentSelection, fixed, selected }) => {
   console.log(title);
   return (
     <>
-      <div className="col-md-5">
+      <div className="col-md-5 my-auto">
         <h2> {title}</h2>
-        <div className="list-group">{ListItems}</div>
+        <div className="list-group border border-dark">{ListItems}</div>
       </div>
     </>
   );

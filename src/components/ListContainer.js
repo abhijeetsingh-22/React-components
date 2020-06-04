@@ -3,11 +3,12 @@ import List from './List';
 
 const ListContainer = () => {
   var [selected, setSelected] = useState({ add: null, delete: null });
-  var [secondListItems, setSecondListItems] = useState(['npm']);
+  var [secondListItems, setSecondListItems] = useState([]);
 
   const handleAdd = (e) => {
     e.preventDefault();
     setSecondListItems([...secondListItems, selected.add]);
+    setSelected({ add: null, delete: null });
   };
   const handleDelete = (e) => {
     e.preventDefault();
@@ -15,6 +16,7 @@ const ListContainer = () => {
       (item) => item !== selected.delete
     );
     setSecondListItems(updatedlist);
+    setSelected({ add: null, delete: null });
   };
 
   const setCurrentSelection = (activeItem) => {
@@ -23,24 +25,16 @@ const ListContainer = () => {
   return (
     <>
       {/* <div className="container d-flex vh-100 justify-content-around align-items-center"> */}
-      <div className=" container   ">
-        <div className="row align-items-center vh-100">
+      <div className=" container vh-100">
+        <div className="row h-100 ">
           <List
-            title={'Fixed List'}
-            itemsList={[
-              'Learn React',
-              //   'Learn Node.js,Learn React',
-              //   'Learn Node.jsLearn React',
-              //   'Learn Node.js',
-              //   'Learn Node.js',
-              //   'Learn React',
-              'Learn Node.js',
-            ]}
+            title={'All Roles or skill sets'}
+            itemsList={['Admin', 'Superviser', 'User', 'Spanish speaking']}
             setCurrentSelection={setCurrentSelection}
             selected={selected.add}
             fixed
           />
-          <div className="col-md-2 d-flex flex-column">
+          <div className="col-md-2 d-flex flex-column my-auto">
             <button
               className="btn btn-primary m-2"
               disabled={selected.add ? false : true}
@@ -58,7 +52,7 @@ const ListContainer = () => {
           </div>
           <List
             itemsList={secondListItems}
-            title={'Editable List'}
+            title={'Available roles'}
             selected={selected.delete}
             setCurrentSelection={setCurrentSelection}
           />
